@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "RegisterVisitor",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
