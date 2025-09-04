@@ -15,10 +15,12 @@ public class VisitorRequest
 public class RegisterVisitor
 {
     private readonly ILogger<RegisterVisitor> _logger;
+    private readonly VisitorDbContext _context;
 
-    public RegisterVisitor(ILogger<RegisterVisitor> logger)
+    public RegisterVisitor(ILogger<RegisterVisitor> logger, VisitorDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     [Function("RegisterVisitor")]
@@ -54,6 +56,19 @@ public class RegisterVisitor
         {
             return new BadRequestObjectResult("You need to have a valid email address.");
         }
+
+        // Creates and save a new Visitor to database
+        var visitor = new Visitor
+        {
+            Name = name,
+            Email = email,
+            CreatedAt = DateTime.UtcNow,
+        };
+
+        _context.Visitors.Add(visitor);
+        await _context.SaveChangesAsync();
+
+        _logger.LogInformation($"Visitor {name} registered successfully with ID {visitor.Id}");
 
         string responseMessage = $"Welcome {name}!";
 
