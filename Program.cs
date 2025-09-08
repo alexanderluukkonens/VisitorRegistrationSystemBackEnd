@@ -13,9 +13,14 @@ builder
     .Services.AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights();
 
-// Database connection for local development
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+
+
 builder.Services.AddDbContext<VisitorDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+    options.UseNpgsql(connectionString));
+
+
+
 
 builder.Build().Run();
+
