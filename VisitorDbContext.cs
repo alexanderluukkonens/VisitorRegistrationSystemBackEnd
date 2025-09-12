@@ -1,13 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 
-public class Visitor
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; }
-}
-
 public class VisitorDbContext : DbContext
 {
     public VisitorDbContext(DbContextOptions<VisitorDbContext> options)

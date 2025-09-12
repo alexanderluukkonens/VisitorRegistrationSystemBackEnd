@@ -6,12 +6,6 @@ using Newtonsoft.Json;
 
 namespace CheckInFunction;
 
-public class VisitorRequest
-{
-    public string Name { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-}
-
 public class RegisterVisitor
 {
     private readonly ILogger<RegisterVisitor> _logger;
