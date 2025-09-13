@@ -26,6 +26,7 @@ public class RegisterVisitor
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+            // Read and convert from http request
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var data = JsonConvert.DeserializeObject<VisitorRequest>(requestBody);
 
